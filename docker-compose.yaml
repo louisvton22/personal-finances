@@ -1,0 +1,57 @@
+services:
+  client:
+    build: 
+      context: ./client/
+      dockerfile: ./Dockerfile
+    develop:
+      watch:
+        - path: ./client/
+          action: sync
+          target: ./app/
+          ignore:
+            - node_modules/
+        - path: ./client/package.json
+          action: rebuild
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - finances
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  postgres:
+    image: postgres:15.6
+    environment:
+      POSTGRES_USER: finances
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: financials
+    networks:
+      - finances
+  
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: ./Dockerfile
+    environment:
+      - PORT=3001
+    develop:
+      watch:
+        - path: ./backend/
+          action: sync
+          target: ./app/
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+    networks:
+      - finances
+    volumes:
+      - ./backend/:/app
+      - /app/node_modules
+
+networks:
+  finances:
+    driver: bridge
+

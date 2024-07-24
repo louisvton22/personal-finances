@@ -43,10 +43,17 @@ export default function Home() {
     setTransactions(transactions.added);
     setAccounts(transactions.accounts);
   }
+
+  async function addTransactions() {
+    let data = await fetch("./api/addTransactions")
+    console.log(data)
+  }
+
   return (
     <main>
       <Button onClick={getAccessToken}>Get Access Token</Button>
       <Button onClick={getTransactions}>Get Transactions</Button>
+      <Button onClick={addTransactions}>Add Transactions</Button>
       <Balances accounts={accounts}></Balances>
       <Transactions transactions={transactions}></Transactions>
       <InputForm></InputForm>

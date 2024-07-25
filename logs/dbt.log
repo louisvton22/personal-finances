@@ -1,0 +1,97 @@
+[0m14:54:29.261821 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000233C983BA10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000233CB91CEF0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000233C8979010>]}
+
+
+============================== 14:54:29.276011 | b7f892fa-4a9e-4cee-a1b1-7a9eeb49d93e ==============================
+[0m14:54:29.276011 [info ] [MainThread]: Running with dbt=1.8.4
+[0m14:54:29.276011 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\tonsa\\.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'invocation_command': 'dbt init dbt-finances', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m14:54:34.962268 [debug] [MainThread]: Starter project path: C:\Users\tonsa\.pyenv\pyenv-win\versions\3.12.4\Lib\site-packages\dbt\include\starter_project
+[0m14:54:34.978852 [info ] [MainThread]: 
+Your new dbt project "dbt_finances" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m14:54:34.979854 [info ] [MainThread]: Setting up your profile.
+[0m14:55:14.181866 [info ] [MainThread]: Profile dbt_finances written to C:\Users\tonsa\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m14:55:14.182469 [debug] [MainThread]: Command `dbt init` succeeded at 14:55:14.182469 after 45.00 seconds
+[0m14:55:14.183470 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000233CC15C1D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000233CBA09C40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000233CC510230>]}
+[0m14:55:14.183470 [debug] [MainThread]: Flushing usage events
+[0m14:56:03.882017 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000155BA3BC6E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000155BCBC27E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000155BCBC3110>]}
+
+
+============================== 14:56:03.885103 | 927d1e14-6a82-48e1-bef1-9054b7c1cc16 ==============================
+[0m14:56:03.885103 [info ] [MainThread]: Running with dbt=1.8.4
+[0m14:56:03.886103 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'logs', 'profiles_dir': 'C:\\Users\\tonsa\\.dbt', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt debug', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m14:56:03.899177 [info ] [MainThread]: dbt version: 1.8.4
+[0m14:56:03.900177 [info ] [MainThread]: python version: 3.12.4
+[0m14:56:03.900177 [info ] [MainThread]: python path: C:\Users\tonsa\.pyenv\pyenv-win\versions\3.12.4\python.exe
+[0m14:56:03.901177 [info ] [MainThread]: os info: Windows-11-10.0.22631-SP0
+[0m14:56:03.976725 [info ] [MainThread]: Using profiles dir at C:\Users\tonsa\.dbt
+[0m14:56:03.977726 [info ] [MainThread]: Using profiles.yml file at C:\Users\tonsa\.dbt\profiles.yml
+[0m14:56:03.977726 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\tonsa\Personal Finances\personal-finances\dbt_project.yml
+[0m14:56:03.978728 [error] [MainThread]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m14:56:03.979726 [debug] [MainThread]: Command `dbt debug` failed at 14:56:03.979726 after 0.21 seconds
+[0m14:56:03.980726 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000155BA3BC6E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000155BA731220>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000155BD31F710>]}
+[0m14:56:03.980726 [debug] [MainThread]: Flushing usage events
+[0m14:56:34.827008 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020AD4D094F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020AD3398920>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020AD5A70B30>]}
+
+
+============================== 14:56:34.830007 | 386dee5f-11dc-4911-b837-447841a76726 ==============================
+[0m14:56:34.830007 [info ] [MainThread]: Running with dbt=1.8.4
+[0m14:56:34.831007 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\tonsa\\.dbt', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'logs', 'warn_error': 'None', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'invocation_command': 'dbt debug', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m14:56:34.844691 [info ] [MainThread]: dbt version: 1.8.4
+[0m14:56:34.845691 [info ] [MainThread]: python version: 3.12.4
+[0m14:56:34.845691 [info ] [MainThread]: python path: C:\Users\tonsa\.pyenv\pyenv-win\versions\3.12.4\python.exe
+[0m14:56:34.846691 [info ] [MainThread]: os info: Windows-11-10.0.22631-SP0
+[0m14:56:34.918208 [info ] [MainThread]: Using profiles dir at C:\Users\tonsa\.dbt
+[0m14:56:34.919208 [info ] [MainThread]: Using profiles.yml file at C:\Users\tonsa\.dbt\profiles.yml
+[0m14:56:34.920209 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\tonsa\Personal Finances\personal-finances\dbt_project.yml
+[0m14:56:34.920209 [error] [MainThread]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m14:56:34.921209 [debug] [MainThread]: Command `dbt debug` failed at 14:56:34.921209 after 0.17 seconds
+[0m14:56:34.922323 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020AD5C38110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020AD5D3CA10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020AD598D9A0>]}
+[0m14:56:34.922323 [debug] [MainThread]: Flushing usage events
+[0m15:07:42.198850 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001817E057A40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001817DF39940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001817AF98DD0>]}
+
+
+============================== 15:07:42.201404 | c65566c1-6d1e-4951-8032-d9fcdf7a2761 ==============================
+[0m15:07:42.201404 [info ] [MainThread]: Running with dbt=1.8.4
+[0m15:07:42.202403 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\tonsa\\.dbt', 'fail_fast': 'False', 'version_check': 'True', 'log_path': 'logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'invocation_command': 'dbt debug --config-dir', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m15:07:42.216290 [info ] [MainThread]: To view your profiles.yml file, run:
+
+start C:\Users\tonsa\.dbt
+[0m15:07:42.218289 [debug] [MainThread]: Command `dbt debug` succeeded at 15:07:42.217291 after 0.13 seconds
+[0m15:07:42.218289 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001817E98BFE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001817E7C2570>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001817E7EEFF0>]}
+[0m15:07:42.218289 [debug] [MainThread]: Flushing usage events
+[0m15:08:11.960918 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000012D6355BD70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000012D65C11700>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000012D657C6480>]}
+
+
+============================== 15:08:11.963999 | a1e8484f-fc15-4dcf-9cc3-4c9c863da84d ==============================
+[0m15:08:11.963999 [info ] [MainThread]: Running with dbt=1.8.4
+[0m15:08:11.964999 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\tonsa\\.dbt', 'version_check': 'True', 'warn_error': 'None', 'log_path': 'logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt debug', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m15:08:11.978068 [info ] [MainThread]: dbt version: 1.8.4
+[0m15:08:11.979068 [info ] [MainThread]: python version: 3.12.4
+[0m15:08:11.979068 [info ] [MainThread]: python path: C:\Users\tonsa\.pyenv\pyenv-win\versions\3.12.4\python.exe
+[0m15:08:11.980072 [info ] [MainThread]: os info: Windows-11-10.0.22631-SP0
+[0m15:08:12.050149 [info ] [MainThread]: Using profiles dir at C:\Users\tonsa\.dbt
+[0m15:08:12.051149 [info ] [MainThread]: Using profiles.yml file at C:\Users\tonsa\.dbt\profiles.yml
+[0m15:08:12.052149 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\tonsa\Personal Finances\personal-finances\dbt_project.yml
+[0m15:08:12.052223 [error] [MainThread]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m15:08:12.053225 [debug] [MainThread]: Command `dbt debug` failed at 15:08:12.053225 after 0.17 seconds
+[0m15:08:12.054224 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000012D65C4D730>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000012D656C6D80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000012D6578EAB0>]}
+[0m15:08:12.054224 [debug] [MainThread]: Flushing usage events

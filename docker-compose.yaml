@@ -36,27 +36,6 @@ services:
       - "5433:5432"
     networks:
       - finances
-  
-  backend:
-    build: 
-      context: ./backend
-      dockerfile: ./Dockerfile
-    environment:
-      - PORT=3001
-    develop:
-      watch:
-        - path: ./backend/
-          action: sync
-          target: ./app/
-    ports:
-      - "3001:3001"
-    depends_on:
-      - postgres
-    networks:
-      - finances
-    volumes:
-      - ./backend/:/app
-      - /app/node_modules
 
 networks:
   finances:

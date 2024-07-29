@@ -3,7 +3,7 @@ import type { Transaction, PersonalFinanceCategory } from "plaid";
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow} from "@/components/ui/table"
 
 
-export function Transactions( {transactions} : { transactions: Transaction[]}) {
+export function Transactions( {transactions} : { transactions: Transaction[] | undefined}) {
    
     return (
     <div className="flex flex-row">
@@ -17,7 +17,7 @@ export function Transactions( {transactions} : { transactions: Transaction[]}) {
                     
                 </TableRow>
             </TableHeader>
-            <TableBody>
+            { transactions && <TableBody>
                 {transactions.map((transaction) => (
                 <TableRow key = {transaction.transaction_id}>
                     <TableCell className="font-medium">{transaction.date}</TableCell>
@@ -27,6 +27,7 @@ export function Transactions( {transactions} : { transactions: Transaction[]}) {
                 </TableRow>
                 ))}
             </TableBody>
+            }
             
         </Table>
         <></>

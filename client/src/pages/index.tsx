@@ -6,7 +6,7 @@ import  React  from 'react'
 import { access } from "fs";
 import Balances from "@/components/ui/balances";
 import Transactions from "@/components/ui/transactions";
-import { Transaction } from "plaid";
+import type { Transaction, AccountBase, TransactionsSyncResponse } from "plaid";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,8 +14,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [accessToken, setAccessToken] = React.useState("");
-  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
-  const [accounts, setAccounts] = React.useState([]);
+  const [transactions, setTransactions] = React.useState<TransactionsSyncResponse>();
+  const [accounts, setAccounts] = React.useState<AccountBase[]>([]);
   async function getAccessToken() {
     let accessToken: string | null
     if (!localStorage.getItem("accessToken")) {
@@ -42,10 +42,22 @@ export default function Home() {
     console.log(transactions);
     setTransactions(transactions.added);
     setAccounts(transactions.accounts);
+    await addAccounts(transactions.accounts);
+    await addTransactions(transactions.added);
+  }
+  async function addAccounts(accounts: AccountBase[]) {
+    let data = await fetch("./api/addAccount", {
+      method: "POST",
+      body: JSON.stringify(accounts)
+    })
+    console.log(data);
   }
 
-  async function addTransactions() {
-    let data = await fetch("./api/addTransactions")
+  async function addTransactions(transactions: Transaction[]) {
+    let data = await fetch("./api/addTransactions", {
+      method: 'POST',
+      body: JSON.stringify(transactions)
+    })
     console.log(data)
   }
 
@@ -53,9 +65,9 @@ export default function Home() {
     <main>
       <Button onClick={getAccessToken}>Get Access Token</Button>
       <Button onClick={getTransactions}>Get Transactions</Button>
-      <Button onClick={addTransactions}>Add Transactions</Button>
-      <Balances accounts={accounts}></Balances>
-      <Transactions transactions={transactions}></Transactions>
+      {/* <Button onClick={addTransactions}>Add Transactions</Button> */}
+      {accounts && <Balances accounts={accounts}></Balances>}
+      {transactions && <Transactions transactions={transactions.added}></Transactions>}
       <InputForm></InputForm>
     </main>
   );

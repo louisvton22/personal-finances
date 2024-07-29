@@ -20,11 +20,6 @@ services:
       - finances
     environment:
       - CHOKIDAR_USEPOLLING=true
-      - PGUSER=finances
-      - PGPASSWORD=password
-      - PGDATABASE=financials
-      - PGHOST=postgres
-      - PGPORT=5432
 
   postgres:
     image: postgres:15.6
@@ -33,9 +28,24 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: financials
     ports:
-      - "5433:5432"
+      - 5433:5432
     networks:
       - finances
+
+  dbt_finances:
+    image: ghcr.io/dbt-labs/dbt-postgres:1.8.1
+    networks:
+      - finances
+    command:
+      - debug
+    volumes:
+      - ./dbt_finances:/usr/app/dbt
+      - ~/.dbt:/root/.dbt
+    depends_on:
+      - postgres
+    environment:
+      DBT_PROFILE: dbt_finances
+      DBT_TARGET: dev
 
 networks:
   finances:

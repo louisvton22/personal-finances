@@ -19,7 +19,8 @@ export default async function handler(req: NextApiRequest, res:NextApiResponse) 
         let transactionsRes = await client.transactionsSync(request);
         data = transactionsRes.data
         hasMore = data.has_more
-        console.log(data);
+        console.log("call add transactions router")
+
     }
     res.status(200).json(data);
 }

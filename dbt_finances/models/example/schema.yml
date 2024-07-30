@@ -2,20 +2,53 @@
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
+  - name: account
+    description: "This table contains account details including balances, name, and subtype."
     columns:
       - name: id
-        description: "The primary key for this table"
-        data_tests:
+        description: "The unique identifier for the account."
+        tests:
           - unique
           - not_null
+      - name: available
+        description: "The available balance of the account."
+      - name: current
+        description: "The current balance of the account."
+      - name: name
+        description: "The name of the account."
+      - name: subtype
+        description: "The subtype of the account."
+      - name: transactions
+        description: "The transactions related to the account."
 
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
+  - name: transaction
+    description: "This table contains transaction details including amounts, dates, and related account information."
     columns:
       - name: id
-        description: "The primary key for this table"
-        data_tests:
+        description: "The unique identifier for the transaction."
+        tests:
           - unique
           - not_null
+      - name: createdAt
+        description: "The timestamp when the transaction was created."
+        tests:
+          - not_null
+      - name: account_id
+        description: "The foreign key referencing the account."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('account')
+              field: id
+      - name: amount
+        description: "The amount of the transaction."
+      - name: authorizedDate
+        description: "The date when the transaction was authorized."
+      - name: logoUrl
+        description: "The URL of the merchant's logo."
+      - name: merchantName
+        description: "The name of the merchant."
+      - name: category
+        description: "The category of the transaction."
+      - name: currency
+        description: "The currency used in the transaction."

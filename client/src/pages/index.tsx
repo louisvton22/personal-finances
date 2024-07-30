@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [accessToken, setAccessToken] = React.useState("");
-  const [transactions, setTransactions] = React.useState<TransactionsSyncResponse>();
+  const [transactions, setTransactions] = React.useState<Transaction[]>();
   const [accounts, setAccounts] = React.useState<AccountBase[]>([]);
   async function getAccessToken() {
     let accessToken: string | null
@@ -38,7 +38,7 @@ export default function Home() {
       method: "POST",
       body: JSON.stringify({token: accessToken})
     })
-    let transactions = await data.json();
+    let transactions: TransactionsSyncResponse = await data.json();
     console.log(transactions);
     setTransactions(transactions.added);
     setAccounts(transactions.accounts);
@@ -67,7 +67,7 @@ export default function Home() {
       <Button onClick={getTransactions}>Get Transactions</Button>
       {/* <Button onClick={addTransactions}>Add Transactions</Button> */}
       {accounts && <Balances accounts={accounts}></Balances>}
-      {transactions && <Transactions transactions={transactions.added}></Transactions>}
+      {transactions && <Transactions transactions={transactions}></Transactions>}
       <InputForm></InputForm>
     </main>
   );

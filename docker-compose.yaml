@@ -37,10 +37,17 @@ services:
     networks:
       - finances
     command:
-      - debug
+      [
+          "run",
+          "--profiles-dir",
+          "/root",
+          "--project-dir",
+          "/dbt",
+          "--full-refresh"
+      ]
     volumes:
-      - ./dbt_finances:/usr/app/dbt
-      - ~/.dbt:/root/.dbt
+      - ./dbt_finances:/dbt
+      - ~/.dbt:/root
     depends_on:
       - postgres
     environment:

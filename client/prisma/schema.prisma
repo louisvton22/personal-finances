@@ -21,17 +21,21 @@ model Account {
   name String
   subtype String
   transactions Transaction[]
+
+  @@map("accounts")
 }
 
 model Transaction {
   id        String   @id 
-  createdAt DateTime @default(now())
+  created_at DateTime @default(now())
   account Account @relation(fields: [account_id], references: [id])
   account_id String
   amount Int
-  authorizedDate String
+  authorized_date DateTime?
   logoUrl String
-  merchantName String
+  merchant_name String
   category String
   currency String
+
+  @@map("transactions")
 }

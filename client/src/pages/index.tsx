@@ -53,6 +53,11 @@ export default function Home() {
     console.log(data);
   }
 
+  async function getSummaries() {
+    let data = await fetch("./api/getSummaries")
+    console.log(data);
+  }
+
   async function addTransactions(transactions: Transaction[]) {
     let data = await fetch("./api/addTransactions", {
       method: 'POST',
@@ -65,7 +70,7 @@ export default function Home() {
     <main>
       <Button onClick={getAccessToken}>Get Access Token</Button>
       <Button onClick={getTransactions}>Get Transactions</Button>
-      {/* <Button onClick={addTransactions}>Add Transactions</Button> */}
+      <Button onClick={getSummaries}>Get Summaries</Button>
       {accounts && <Balances accounts={accounts}></Balances>}
       {transactions && <Transactions transactions={transactions}></Transactions>}
       <InputForm></InputForm>

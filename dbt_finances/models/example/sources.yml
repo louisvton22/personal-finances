@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: financials
+    description: "bank account data from plaid API"
+    database: financials
+    schema: public
+    tables:
+      - name: accounts
+        description: "accounts connected to bank"
+      - name: transactions
+        description: "transactions made with bank account"

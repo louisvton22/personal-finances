@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: account
+  - name: accounts
     description: "This table contains account details including balances, name, and subtype."
     columns:
       - name: id
@@ -21,7 +21,7 @@ models:
       - name: transactions
         description: "The transactions related to the account."
 
-  - name: transaction
+  - name: transactions
     description: "This table contains transaction details including amounts, dates, and related account information."
     columns:
       - name: id
@@ -29,7 +29,7 @@ models:
         tests:
           - unique
           - not_null
-      - name: createdAt
+      - name: created_at
         description: "The timestamp when the transaction was created."
         tests:
           - not_null
@@ -42,11 +42,11 @@ models:
               field: id
       - name: amount
         description: "The amount of the transaction."
-      - name: authorizedDate
+      - name: authorized_date
         description: "The date when the transaction was authorized."
       - name: logoUrl
         description: "The URL of the merchant's logo."
-      - name: merchantName
+      - name: merchant_name
         description: "The name of the merchant."
       - name: category
         description: "The category of the transaction."

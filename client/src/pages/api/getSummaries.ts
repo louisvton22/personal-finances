@@ -5,8 +5,7 @@ import { execSync } from "child_process";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     try {
-        // execSync('npx prisma db pull')
-        // execSync('npx prisma generate')
+        execSync('docker compose dbt_finances')
 
         const data = await prisma.monthly_spending.findMany()
         res.status(200).json(data)

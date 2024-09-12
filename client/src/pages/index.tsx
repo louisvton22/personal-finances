@@ -48,7 +48,7 @@ export default function Home() {
   async function addAccounts(accounts: AccountBase[]) {
     let data = await fetch("./api/addAccount", {
       method: "POST",
-      body: JSON.stringify(accounts)
+      body: JSON.stringify(Array.from(accounts))
     })
     console.log(data);
   }
@@ -66,11 +66,15 @@ export default function Home() {
     console.log(data)
   }
 
+  async function startPrefectFlow() {
+    await fetch("http://prefect:4200/api/projects/")
+  }
   return (
     <main>
       <Button onClick={getAccessToken}>Get Access Token</Button>
       <Button onClick={getTransactions}>Get Transactions</Button>
       <Button onClick={getSummaries}>Get Summaries</Button>
+      <Button onClick={startPrefectFlow}> Perform Prefect Flow </Button>
       {accounts && <Balances accounts={accounts}></Balances>}
       {transactions && <Transactions transactions={transactions}></Transactions>}
       <InputForm></InputForm>

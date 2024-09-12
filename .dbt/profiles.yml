@@ -14,9 +14,9 @@ dbt_finances:
   outputs:
     dev:
       dbname: financials
-      host: postgres
+      host: host.docker.internal
       password: password
-      port: 5432
+      port: 5433 
       schema: public
       threads: 1
       type: postgres

@@ -1,8 +1,8 @@
 services:
   client:
     build: 
-      context: ./client/
-      dockerfile: ./Dockerfile
+      context: .
+      dockerfile: ./client/Dockerfile
     develop:
       watch:
         - path: ./client/
@@ -34,28 +34,107 @@ services:
     networks:
       - finances
 
-  dbt_finances:
-    image: ghcr.io/dbt-labs/dbt-postgres:1.8.1
-    networks:
-      - finances
-    command:
-      [
-          "run",
-          "--profiles-dir",
-          "/root",
-          "--project-dir",
-          "/dbt",
-          "--full-refresh"
-      ]
-    volumes:
-      - ./dbt_finances:/dbt
-      - ./.dbt:/root
+  # dbt_finances:
+  #   image: ghcr.io/dbt-labs/dbt-postgres:1.8.1
+  #   networks:
+  #     - finances
+  #   command:
+  #     [
+  #         "run",
+  #         "--profiles-dir",
+  #         "/root",
+  #         "--project-dir",
+  #         "/dbt",
+  #         "--full-refresh"
+  #     ]
+  #   volumes:
+  #     - ./dbt_finances:/dbt
+  #     - ./.dbt:/root
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     DBT_PROFILE: dbt_finances
+  #     DBT_TARGET: dev
+  # prefect:
+  #   image: prefecthq/server
+  #   command: "prefect server start"
+
+  init-airflow:
+    image: apache/airflow:latest
     depends_on:
       - postgres
+    networks:
+      - finances
     environment:
-      DBT_PROFILE: dbt_finances
-      DBT_TARGET: dev
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres-airflow/airflow
+    command: >
+      bash -c "airflow db init && 
+              airflow users create --username airflow --password password --firstname John --lastname Doe --role Admin --email adming@example.com"
+  
+  webserver:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    user: root
+    depends_on:
+      - postgres 
+    networks:
+      - finances
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./dbt_finances:/opt/dbt
+      - ./.dbt:/root/.dbt
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - LOAD_EX=n
+      - EXECUTOR=Local
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres-airflow/airflow
+      - AIRFLOW__CORE__FERNET_KEY=iCgP29Jmqt9TMpms393D0lIrJaqZncX9Ir9u2r7PFAY=
+      - AIRFLOW__WEBSERVER__DEFAULT__USER_USERNAME=airflow
+      - AIRFLOW__WEBSERVER__DEFAULT__USER_PASSWORD=airflow
+      - AIRFLOW_WWW_USERNAME=airflow
+      - AIRFLOW_WWW_PASSWORD=password
+      - AIRFLOW__WEBSERVER__SECRET_KEY=secret
+    ports:
+      - "8080:8080"
+    command: webserver
 
+  scheduler:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres 
+    networks:
+      - finances
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./dbt_finances:/opt/dbt
+      - ./.dbt:/root/.dbt
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - LOAD_EX=n
+      - EXECUTOR=Local
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres-airflow/airflow
+      - AIRFLOW__CORE__FERNET_KEY=iCgP29Jmqt9TMpms393D0lIrJaqZncX9Ir9u2r7PFAY=
+      - AIRFLOW__WEBSERVER__DEFAULT__USER_USERNAME=airflow
+      - AIRFLOW__WEBSERVER__DEFAULT__USER_PASSWORD=airflow
+      - AIRFLOW_WWW_USERNAME=airflow
+      - AIRFLOW_WWW_PASSWORD=password
+      - AIRFLOW__WEBSERVER__SECRET_KEY=secret
+    command: scheduler
+  postgres-airflow:
+    image: postgres:15.6
+    networks:
+      - finances
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
 networks:
   finances:
     driver: bridge

@@ -39,3 +39,16 @@ model Transaction {
 
   @@map("transactions")
 }
+
+model MonthlySpending {
+  month_name String @id
+  sum Int
+
+@@map("monthly_spending")
+}
+
+model SpendingCateogry {
+  category String @id
+  total Int
+@@map("spending_categories")
+}

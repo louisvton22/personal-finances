@@ -7,7 +7,7 @@ import { access } from "fs";
 import Balances from "@/components/ui/balances";
 import Transactions from "@/components/ui/transactions";
 import type { Transaction, AccountBase, TransactionsSyncResponse } from "plaid";
-
+import { PieChart } from "@/components/ui/pieChart"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -78,6 +78,7 @@ export default function Home() {
       {accounts && <Balances accounts={accounts}></Balances>}
       {transactions && <Transactions transactions={transactions}></Transactions>}
       <InputForm></InputForm>
+      <PieChart></PieChart>
     </main>
   );
 }

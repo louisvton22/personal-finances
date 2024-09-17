@@ -1,7 +1,7 @@
 import datetime
 from airflow import DAG
 from docker.types import Mount
-
+import platform
 from airflow.providers.docker.operators.docker import DockerOperator
 
 default_args = {
@@ -34,8 +34,11 @@ t1 = DockerOperator(
     docker_url='unix://var/run/docker.sock',
     network_mode='bridge',
     mounts=[
-        Mount(source='/c/Users/tonsa/Personal Finances/personal-finances/dbt_finances', target='/dbt', type='bind'),
-        Mount(source='/c/Users/tonsa/Personal Finances/personal-finances/.dbt', target='/root', type='bind')
+        Mount(source='/Users/louiston/personal-finances/dbt_finances', target='/dbt', type='bind'),
+        Mount(source='/Users/louiston/personal-finances/.dbt', target='/root', type='bind')
     ],
+    #     Mount(source='c/Users/tonsa/Personal Finances/personal-finances/dbt_finances', target='/dbt', type='bind'),
+    #     Mount(source='c/Users/tonsa/Personal Finances/personal-finances/.dbt', target='/root', type='bind')
+    # ],
     dag=dag
 )

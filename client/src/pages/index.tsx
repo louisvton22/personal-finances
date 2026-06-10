@@ -46,6 +46,7 @@ export default function Home() {
     setAccounts(transactions.accounts);
     await addAccounts(transactions.accounts);
     await addTransactions(transactions.added);
+    setShowToast(true);
   }
   async function addAccounts(accounts: AccountBase[]) {
     let data = await fetch("./api/addAccount", {

@@ -8,6 +8,7 @@ import Balances from "@/components/ui/balances";
 import Transactions from "@/components/ui/transactions";
 import type { Transaction, AccountBase, TransactionsSyncResponse } from "plaid";
 import { PieChart } from "@/components/ui/pieChart"
+import { Toast } from "@/components/ui/toast"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,7 @@ export default function Home() {
   const [accessToken, setAccessToken] = React.useState("");
   const [transactions, setTransactions] = React.useState<Transaction[]>();
   const [accounts, setAccounts] = React.useState<AccountBase[]>([]);
+  const [showToast, setShowToast] = React.useState(false);
   async function getAccessToken() {
     let accessToken: string | null
     if (!localStorage.getItem("accessToken")) {
@@ -44,6 +46,7 @@ export default function Home() {
     setAccounts(transactions.accounts);
     await addAccounts(transactions.accounts);
     await addTransactions(transactions.added);
+    setShowToast(true);
   }
   async function addAccounts(accounts: AccountBase[]) {
     let data = await fetch("./api/addAccount", {
@@ -79,6 +82,11 @@ export default function Home() {
       {transactions && <Transactions transactions={transactions}></Transactions>}
       <InputForm></InputForm>
       <PieChart></PieChart>
+      <Toast
+        message="Transactions loaded successfully!"
+        show={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </main>
   );
 }

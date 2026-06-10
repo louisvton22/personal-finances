@@ -17,6 +17,7 @@ export default function Home() {
   const [accessToken, setAccessToken] = React.useState("");
   const [transactions, setTransactions] = React.useState<Transaction[]>();
   const [accounts, setAccounts] = React.useState<AccountBase[]>([]);
+  const [showToast, setShowToast] = React.useState(false);
   async function getAccessToken() {
     let accessToken: string | null
     if (!localStorage.getItem("accessToken")) {

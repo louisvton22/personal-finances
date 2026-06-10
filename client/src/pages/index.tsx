@@ -56,8 +56,9 @@ export default function Home() {
   }
 
   async function getSummaries() {
-    let data = await fetch("./api/getSummaries")
-    console.log(data);
+    const res = await fetch("./api/getSummaries");
+    const data: Summary[] = await res.json();
+    setSummaries(data);
   }
 
   async function addTransactions(transactions: Transaction[]) {

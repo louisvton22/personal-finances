@@ -6,6 +6,7 @@ import  React  from 'react'
 import { access } from "fs";
 import Balances from "@/components/ui/balances";
 import Transactions from "@/components/ui/transactions";
+import Summaries, { Summary } from "@/components/ui/summaries";
 import type { Transaction, AccountBase, TransactionsSyncResponse } from "plaid";
 import { PieChart } from "@/components/ui/pieChart"
 

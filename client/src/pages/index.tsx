@@ -82,6 +82,11 @@ export default function Home() {
       {transactions && <Transactions transactions={transactions}></Transactions>}
       <InputForm></InputForm>
       <PieChart></PieChart>
+      <Toast
+        message="Transactions loaded successfully!"
+        show={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </main>
   );
 }

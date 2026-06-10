@@ -8,6 +8,7 @@ import Balances from "@/components/ui/balances";
 import Transactions from "@/components/ui/transactions";
 import type { Transaction, AccountBase, TransactionsSyncResponse } from "plaid";
 import { PieChart } from "@/components/ui/pieChart"
+import { Toast } from "@/components/ui/toast"
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -80,6 +80,7 @@ export default function Home() {
       <Button onClick={startPrefectFlow}> Perform Prefect Flow </Button>
       {accounts && <Balances accounts={accounts}></Balances>}
       {transactions && <Transactions transactions={transactions}></Transactions>}
+      {summaries && <Summaries summaries={summaries}></Summaries>}
       <InputForm></InputForm>
       <PieChart></PieChart>
     </main>
